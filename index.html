@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>最終關卡-首頁
+  </title>
+
+  <link href="https://fonts.googleapis.com/css2?family=KoHo:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+  <link rel="stylesheet" href="css\init\init_style.css">
+  <link rel="stylesheet" href="css\style.css">
+</head>
+
+<body>
+  <!-- 返回頂層Btn -->
+  <a href="#" class="back_top"> ▲ </a>
+
+  <!-- 登入視窗 -->
+  <div class="js_hidden hidden">
+    <!-- hidden -->
+    <div class="login_bc">
+      <div class="login_content">
+        <button class="js_close_login close_btn btn btn_yellow">✘</button>
+
+        <h2 class="login_title">管理員登入</h2>
+        <form action="" class="login_inputs">
+          <div class="mb_15 dis_flex flex_align_i_center">
+            <ladel>帳號</ladel>
+            <input type="text" class="js-emailInput email_input">
+          </div>
+          <div class="mb_30 dis_flex flex_align_i_center">
+            <ladel>密碼</ladel>
+            <input type="password" class="js-passwordInput password_input">
+          </div>
+
+        </form>
+  
+        <p class="js_login_text color_error"></p>
+        <button type="button" class="js_loginBtn loginBtn btn btn_yellow">登入</button>
+
+        <ul>
+          <li><button type="button" class="btn btn_outline_yellow mb_15 py_10">註冊帳號</button></li>
+          <li><button type="button" class="btn btn_outline_yellow py_10">忘記密碼？</button></li>
+        </ul>
+  
+      </div>
+    </div>
+  </div>
+
+  <!-- 導覽列 -->
+  <nav>
+    <div class="container dis_flex flex_jc_space_between flex_align_i_center">
+
+      <a href="#" class="logos dis_flex flex_align_i_center">
+        <h3 class="icon">
+          <i class="fas fa-crow"></i>
+        </h3>
+        <h2 class="logo text_w_bold">natural</h2>
+      </a>
+      <div class="hamburger_list">
+        <ul class="dis_flex nav_links">
+          <li class="nav_link">
+            <a href="#">介紹</a>
+          </li>
+          <li class="nav_link">
+            <a href="#">商品選購</a>
+          </li>
+          <li class="js_loginPage_btn nav_link">
+            <a href="#">登入</a>
+          </li>
+          <li class="nav_link shopping_cart_icon">
+            <a href="#">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- 首圖 -->
+  <header>
+    <div class="container">
+      <div class="header_content">
+        <h2 class="header_text">不將自然視作理所當然</h2>
+        <div class="header_img">
+          <img src="https://images.unsplash.com/photo-1541884596-e4fe2819d6ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=752&q=80" alt="首圖">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主要內容 -->
+  <section class="warp">
+    <div class="container">
+      <div class="main_content">
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁尾 -->
+  <footer class="footer">
+    <div class="container">
+      <p>僅為個人練習使用，非商用</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <script src="js\config.js"></script>
+  <script src="js\login.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+table {
+  width: 100%;
+  font-size: 18px;
+  border: solid 1px #97a7a4;
+}
+
+thead th, tbody td {
+  border-left: solid 1px #97a7a4;
+  border-radius: solid 1px #97a7a4;
+}
+
+thead, tbody tr:nth-child(even) {
+  background-color: #EBF3F2;
+}
+
+.table_noneData:before {
+  content: none;
+}
+
+.fas {
+  padding-top: 3px;
+}
+
+nav, footer {
+  color: #25342d;
+  background-color: #97a7a4;
+}
+
+nav a {
+  color: #25342d;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.nav_link:hover {
+  border-bottom-color: white;
+}
+
+.nav_link:hover a {
+  color: white;
+}
+
+.btn {
+  font-size: 16px;
+}
+
+.backstage_title {
+  padding: 0 35px;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.review_img {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .review_img {
+    width: 70%;
+  }
+}
+/*# sourceMappingURL=backstage.css.map */

@@ -89,7 +89,6 @@ const app = {
       })
   },
   swal(status, title, times = 2000){
-    // 打勾： 打勾： success, 錯誤： error, 驚嘆號： warning, 說明： info
     swal({
       icon: status,
       title: title,
@@ -115,54 +114,3 @@ const app = {
   }
 }
 app.init();
-
-
-
-
-
-
-
-
-
-
-
-// 缺 reset 功能
-// 執行動作時的動畫
-
-// const productTitle = document.querySelector('.js-productTitle');
-// const productCategory = document.querySelector('.js-productCategory');
-// const productOrigin_price = document.querySelector('.js-productOrigin_price');
-// const productPrice = document.querySelector('.js-productPrice');
-// const productUnit = document.querySelector('.js-productUnit');
-// const productDescription = document.querySelector('.js-productDescription');
-// const productContent = document.querySelector('.js-productContent');
-// const productIsEnabled = document.querySelector('.js-productIsEnabled');
-// const productImageUrl = document.querySelector('.js-productImageUrl');
-// const inpurts = document.querySelectorAll('input[type=text]');
-// const addProductBtn = document.querySelector('.js-addProductBtn');
-
-// obj = {
-//   title: '',
-//   category: '',
-//   origin_price: '',
-//   price: '',
-//   unit: '',
-//   description: '',
-//   content: '',
-//   is_enabled: false,
-//   imageUrl: '',
-// }
-
-// addProductBtn.addEventListener('click', (e)=> {
-//   inpurts.forEach((item) => {
-//     // console.log(item);
-
-//     if(item.value === ''){
-//       console.log(item);
-//       console.log(`value: 沒有值`);
-//     }else{
-      
-//       console.log(`value: ${item.value}`);
-//     }
-//   });
-// })

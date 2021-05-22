@@ -54,6 +54,9 @@ function login(){
         verificationLogin(resData, message);
       }
     })
+    .catch(function(error){
+      console.log(error)
+    })
 
   username = '';
   password = '';

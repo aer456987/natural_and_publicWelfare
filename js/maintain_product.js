@@ -12,16 +12,16 @@ const app = {
           this.data.products = res.data.products;
           this.render();
           productSelectDom.value = '全部商品';
+        }else{
+          const errorTxt = res.data.messages;
+          this.swal('error', errorTxt);
         }
       })
+      .catch(function(error){
+        console.log(error)
+      })
   },
-  renderHtmlStr(item) {  // 渲染得表單結構
-    let online = '';
-    if (item.is_enabled === 1){
-      online = '上架';
-    }else{
-      online = '未上架';
-    }
+  renderHtmlStr(item) {
     return `
       <tr>
         <td data-title="分類">${item.category}</td>
@@ -34,7 +34,7 @@ const app = {
         <td data-title="原價">${item.price}</td>
         <td data-title="售價">${item.origin_price}</td>
         <td data-title="庫存">${item.unit}</td>
-        <td data-title="狀態">${online}</td>
+        <td data-title="狀態">${item.is_enabled? '上架' : '未上架'}</td>
         <td data-title="操作"><sapn>修改</sapn></td>
         <td data-title="刪除">
           <i class="far fa-trash-alt js_del_order del_order btn btn_red" data-id="${item.id}"></i>
@@ -60,32 +60,36 @@ const app = {
   },
   filterProduct(e) {     // 篩選商品
     if(e.target.value === '全部商品'){
-      app.render();
+      this.render();
     }
     let str = '';
-    app.data.products.forEach(item => {
+    this.data.products.forEach(item => {
       if(item.category === e.target.value){
         str += app.renderHtmlStr(item);
         productsListDom.innerHTML = str;
-        app.delClickEvent();
+        this.delClickEvent();
       }
     })
   },
   delClickEvent(){       // 刪除按鈕事件
     const delBtnsDom = document.querySelectorAll('.js_del_order');
     delBtnsDom.forEach(btn => {
-      btn.addEventListener('click', this.delProductItme);
+      btn.addEventListener('click', this.delProductItme.bind(this));
     });
   },
   delProductItme(e) {    // 刪除單樣商品
     const id = e.target.dataset.id;
-    app.swal('success', '已刪除該筆資料', 2500);
+    this.swal('success', '已刪除該筆資料', 2500);
     axios.delete(`${url}/api/${path_api}/admin/product/${id}`)
       .then(res => {
-        app.getData();
-      });
+        this.getData();
+      })
+      .catch(function(error){
+        console.log(error)
+      })
   },
   swal(status, title, times = 2000){
+    // 打勾： 打勾： success, 錯誤： error, 驚嘆號： warning, 說明： info
     swal({
       icon: status,
       title: title,
@@ -94,20 +98,20 @@ const app = {
     })
   },
   init() {
-    const resetbtnDom = document.querySelector('.js_reset_btn');
+    const resetBtnDom = document.querySelector('.js_reset_btn');
 
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     axios.defaults.headers.common['Authorization'] = token;
     this.getData();
 
     // 篩選事件
-    productSelectDom.addEventListener('change', this.filterProduct);
+    productSelectDom.addEventListener('change', this.filterProduct.bind(this));
     // 重新整理
-    resetbtnDom.addEventListener('click', e => {
+    resetBtnDom.addEventListener('click', e => {
       app.swal('info', '資料重整中', 1500);
       this.getData();
     });
-    
+
   }
 }
 app.init();

@@ -4,116 +4,79 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>最終關卡-首頁
-  </title>
+  <title>第三週主線任務</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=KoHo:wght@300&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
-
-  <link rel="stylesheet" href="css\init\init_style.css">
-  <link rel="stylesheet" href="css\style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <!-- 返回頂層Btn -->
-  <a href="#" class="back_top"> ▲ </a>
 
-  <!-- 登入視窗 -->
-  <div class="js_hidden hidden">
-    <!-- hidden -->
-    <div class="login_bc">
-      <div class="login_content">
-        <button class="js_close_login close_btn btn btn_yellow">✘</button>
-
-        <h2 class="login_title">管理員登入</h2>
-        <form action="" class="login_inputs">
-          <div class="mb_15 dis_flex flex_align_i_center">
-            <ladel>帳號</ladel>
-            <input type="email" class="js-emailInput email_input">
+  <div class="js_index">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark px-5">
+      <div class="container">
+        <div class="container-fluid d-flex justify-content-between">
+          <a class="navbar-brand" href="#">
+            <span><i class="fas fa-crow"></i></span>
+            natural
+          </a>
+          <div class="nav_lists">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mr-0" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link px-3" href="backstage_products.html" v-if="loginStatus">進入後台</a>
+                </li>
+                <li class="nav-item" v-if="!loginStatus">
+                  <a class="nav-link px-3" href="login_page.html">登入</a>
+                </li>
+                <li class="nav-item" v-else-if="loginStatus">
+                  <a class="nav-link px-3" href="#">登出</a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="mb_30 dis_flex flex_align_i_center">
-            <ladel>密碼</ladel>
-            <input type="password" class="js-passwordInput password_input">
-          </div>
-
-        </form>
-  
-        <p class="js_login_text color_error"></p>
-        <button type="button" class="js_loginBtn loginBtn btn btn_yellow">登入</button>
-
-        <ul>
-          <li><button type="button" class="btn btn_outline_yellow mb_15 py_10">註冊帳號</button></li>
-          <li><button type="button" class="btn btn_outline_yellow py_10">忘記密碼？</button></li>
-        </ul>
-  
-      </div>
-    </div>
-  </div>
-
-  <!-- 導覽列 -->
-  <nav>
-    <div class="container dis_flex flex_jc_space_between flex_align_i_center">
-
-      <a href="#" class="logos dis_flex flex_align_i_center">
-        <h3 class="icon">
-          <i class="fas fa-crow"></i>
-        </h3>
-        <h2 class="logo text_w_bold">natural</h2>
-      </a>
-      <div class="hamburger_list">
-        <ul class="dis_flex nav_links">
-          <li class="nav_link">
-            <a href="#">介紹</a>
-          </li>
-          <li class="nav_link">
-            <a href="#">商品選購</a>
-          </li>
-          <li class="js_loginPage_btn nav_link">
-            <a href="#">登入</a>
-          </li>
-          <li class="nav_link shopping_cart_icon">
-            <a href="#">
-              <i class="fas fa-shopping-cart"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-  </nav>
-
-
-  <!-- 首圖 -->
-  <header>
-    <div class="container">
-      <div class="header_content">
-        <h2 class="header_text">不將自然視作理所當然</h2>
-        <div class="header_img">
-          <img src="https://images.unsplash.com/photo-1541884596-e4fe2819d6ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=752&q=80" alt="首圖">
         </div>
       </div>
-    </div>
-  </header>
+    </nav>
 
-  <!-- 主要內容 -->
-  <section class="warp">
-    <div class="container">
-      <div class="main_content">
+    <header class="header container">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+          <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+          <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1611477408052-742bad4a20d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=752&q=80" class="d-block w-100 bottom-50" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1588933720673-089b78ddfa14?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80" class="d-block w-100 bottom-50" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1611076023065-b8142108a494?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="d-block w-100 bottom-50" alt="...">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
       </div>
-    </div>
-  </section>
+    </header>
+  </div>
 
-  <!-- 頁尾 -->
-  <footer class="footer">
-    <div class="container">
-      <p>僅為個人練習使用，非商用</p>
-    </div>
-  </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+  <script script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-  <script src="js\config.js"></script>
-  <script src="js\login.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.2/vue.global.js"></script>
+  <script src="js/index_all.js"></script>
 </body>
 </html>

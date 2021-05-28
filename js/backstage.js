@@ -66,6 +66,7 @@ const app = {
 
       }else if(isNew === 'edite'){
         this.isNew = false;
+        // 使用深層拷貝，避免修改圖片但未存檔的狀況下時影響到暫存資料
         this.tempProduct = JSON.parse(JSON.stringify(item));
         if(this.tempProduct.imagesUrl === undefined){
           this.tempProduct.imagesUrl =  [];

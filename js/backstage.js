@@ -128,7 +128,8 @@ const app = {
         dangerMode: true,
       }
       swal(txt)
-      .then((willDelete) => {
+
+      .then(willDelete => {        // 針對選項執行不同動作
         if (willDelete) {
           this.deleteData(product);
         } else {

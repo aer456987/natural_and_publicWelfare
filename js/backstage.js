@@ -66,7 +66,7 @@ const app = {
 
       }else if(isNew === 'edite'){
         this.isNew = false;
-        this.tempProduct = {...item};
+        this.tempProduct = JSON.parse(JSON.stringify(item));
         if(this.tempProduct.imagesUrl === undefined){
           this.tempProduct.imagesUrl =  [];
         }

@@ -42,7 +42,7 @@ const app = {
             console.log('取得資料(成功)', res.data.products);
             console.log('取得this資料(成功)',this.productsList);
           }else{
-            console.log('取得資料(失敗)', res.data.message);
+            console.log('取得資料(錯誤)', res.data.message);
           }
         })
         .catch(err => {
@@ -112,7 +112,7 @@ const app = {
             this.swalFn(res.data.message, 'success');
             this.getData();
           }else{
-            console.log('刪除資料(成功)', res);
+            console.log('刪除資料(錯誤)', res);
             this.swalFn(res.data.message, 'error', 10000)
             return;
           }

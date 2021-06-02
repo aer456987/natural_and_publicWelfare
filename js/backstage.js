@@ -107,9 +107,15 @@ const app = {
       console.log('id', product.id);
       axios.delete(url)
         .then(res => {
-          console.log('刪除資料(成功)', res);
-          this.swalFn(res.data.message, 'success');
-          this.getData();
+          if(res.data.success) {
+            console.log('刪除資料(成功)', res);
+            this.swalFn(res.data.message, 'success');
+            this.getData();
+          }else{
+            console.log('刪除資料(成功)', res);
+            this.swalFn(res.data.message, 'error', 10000)
+            return;
+          }
         })
         .catch(err => {
           console.dir('刪除資料(失敗)', err);

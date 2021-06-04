@@ -133,41 +133,6 @@
                           </button>
                         </div>
                       </div>
-
-                      <!-- 新增圖片/刪除影片 按鈕判斷 -->
-                      <!-- <div
-                        v-if="!tempProduct.imagesUrl.length || tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]"> -->
-                        <!--
-                          符合if條件一： 陣列資料如果為0(!tempProduct.imagesUrl.length) → true → 出現 '新增圖片' 的按鈕
-                          或是
-                          符合if條件二： imagesUrl最後一筆有沒有輸入值(tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1] ) 
-                            → true(有值) → 出現 '新增圖片' 的按鈕
-
-                          [tempProduct.imagesUrl.length - 1] 是因為陣列起始是0，如陣列有三筆，則最後一筆的索引是2，但陣列長度為3，所以要先用長度-1才能抓到最後一筆資料
-                        -->
-                        <!-- <button  type="button" 
-                          class="btn btn-outline-primary btn-sm d-block w-100 my-3"
-                          @click="tempProduct.imagesUrl.push('')"> -->
-                          <!-- 
-                            按下按鈕後，就在 tempProduct.imagesUrl 陣列裡 push 一個空資料
-                            上面的 v-for 就會再跑一次 (imgUrl, key) in tempProduct.imagesUrl ，印出一個空的輸入框
-                            如果是空陣列不會跑v-for
-                          -->
-                          <!-- 新增圖片
-                        </button>
-                      </div> -->
-                      <!-- 刪除圖片按鈕 -->
-                      <!-- <div v-else> -->
-                        <!--
-                          不符合if條件一：只要陣列有資料，就會跑到這裡
-                          不符合if條件二：如果在input裡輸入資料就會再跑一次 if 迴圈，
-                          符合tempProduct.imagesUrl[tempProduct.imagesUrl.length - 1]的條件的話，就不會到這邊
-                        -->
-                        <!-- <button class="btn btn-outline-danger btn-sm d-block w-100 my-3" @click="tempProduct.imagesUrl.pop()">
-                          刪除圖片
-                        </button>
-                      </div> -->
-
                     </div>
 
                   </div>

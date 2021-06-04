@@ -11,7 +11,7 @@ const app = {
         },
         isFill: true,         // 判斷登入按鈕是否為禁用
       },
-      errorStatus: {
+      errorStatus: {          // 錯誤資料整合
         isEmailError: false,  // 判斷欄位是否輸入錯誤
         emailErrorMsg: '',
         isPwError: false,     // 判斷欄位是否輸入錯誤

@@ -2,68 +2,82 @@ const app = {
   data() {
     return {
       url: 'https://vue3-course-api.hexschool.io',
-      path_api: 'toriha_vuetestapi',
+      pathApi: 'toriha_vuetestapi',
       loginStatus: false,
       loginDatas: {
         userData: {
           username: '',
           password: '',
         },
-        constraints: {
-          'email':{
-            presence: {
-              message: "是必填欄位"
-            },
-            email: {
-              message: "格式輸入錯誤"
-            },
-          },
-          'password':{
-            presence: {
-              message: "是必填欄位"
-            },
-          },
-        },
-        error: '',
-        isFill: true,
+        isFill: true,         // 判斷登入按鈕是否為禁用
       },
-
+      errorStatus: {
+        isEmailError: false,  // 判斷欄位是否輸入錯誤
+        emailErrorMsg: '',
+        isPwError: false,     // 判斷欄位是否輸入錯誤
+        pwErrorMsg: '',
+        error: '',
+      }
     }
   },
   methods: {
-    fromValidateFn(){       // 驗證輸入
-      const form = document.querySelector("form.js_login_form");
-      const inputs = document.querySelectorAll("input[type=email], input[type=password]");
-      this.loginDatas.error = '';
+    fromValidateFn(txt){              // 驗證輸入
+      const errorStatus = this.errorStatus;
+      const loginDatas = this.loginDatas;
 
-      inputs.forEach(item => {
-        item.addEventListener("blur", () => {
-          item.nextElementSibling.textContent = "";
-          let errors = validate(form, this.loginDatas.constraints);
-          //呈現在畫面上
-          if(errors){
-            this.loginDatas.isFill = true;
-            Object.keys(errors).forEach(keys => {
-              document.querySelector(`.${keys}`).textContent = errors[keys];
-              })
-              return;
-          }else{
-            this.loginDatas.isFill = false
-          }
-        });
-      });
+      if(txt === 'email'){
+        loginDatas.isFill = true;
+        this.emailValidateFn(errorStatus, loginDatas);
+
+      }else if(txt === 'password'){
+        loginDatas.isFill = true;
+        this.pwValidateFn(errorStatus, loginDatas);
+      }
+
+      if(loginDatas.userData.username && loginDatas.userData.password){
+        loginDatas.isFill = false;
+      }
+
     },
-    loginFn() {             // 登入事件
+    emailValidateFn(status, datas){   // 驗證Email輸入
+      const isMail = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+      status.isEmailError = true;
+      datas.isFill = true;
+
+      if (!isMail.test(datas.userData.username)) {
+        status.emailErrorMsg = 'email格式錯誤';
+      }
+      else {
+        status.isEmailError = false;
+      }
+    },
+    pwValidateFn(status, datas){      // 驗證密碼輸入
+      const isText = /^[a-zA-Z0-9]+$/;
+      const password = datas.userData.password;
+      status.isPwError = true;
+      datas.isFill = true;
+
+      if (!isText.test(password)) {
+        status.pwErrorMsg = '請勿包含特殊字元';
+      } else if (password.length < 6) {
+        status.pwErrorMsg = '請勿少於6個字';
+      } else if (password.length > 15) {
+        status.pwErrorMsg = '請勿超過15個字';
+      } else {
+        status.isPwError = false;
+      }
+    },
+    loginFn() {                       // 登入事件
       this.loginDatas.error = '資料驗證中，請稍後';
       axios.post(`${this.url}/admin/signin`, this.loginDatas.userData)
       .then(res => {
-        console.log('登入(成功)', res);
-        if(!res.data.success){
-          console.log(res.data);
+        if(res.data.success){
+          console.log('登入(成功)', res);
+          this.loginDatas.error = '登入成功';
+        }else{
+          console.log('登入(錯誤)', res.data);
           this.loginDatas.error = `${res.data.message}, 請檢察帳號密碼`;
           return;
-        }else{ 
-          this.loginDatas.error = '登入成功';
         }
         const {token, expired} = res.data;
         document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
@@ -73,22 +87,22 @@ const app = {
           console.dir('登入(失敗)', err);
         })
     },
-    checkLogin() {          // axios check 確認登入狀態
+    checkLogin() {                    // axios check 確認登入狀態
       axios.post(`${this.url}/api/user/check`)
         .then(res => {
-          console.log('前台帳號認證(成功)', res);
-          this.loginStatus = true;
-
-          if(!res.data.success){
+          if(res.data.success){
+            console.log('前台帳號認證(成功)', res);
+            this.loginStatus = true;
+          }else{
+            console.log('前台帳號認證(錯誤)', res);
             this.loginStatus = false;
           }
-
         })
         .catch(err => {
           console.dir('前台帳號認證(失敗)', err);
         })
     },
-    swalFn(title, icon, timer = 2000, text, button = false) {     // 一般提示視窗
+    swalFn(title, icon, timer = 2000, text, button = false) {   // 一般提示視窗
       const txt = { title, text, icon, button, timer };
       swal(txt);
     }

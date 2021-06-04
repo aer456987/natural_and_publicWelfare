@@ -13,6 +13,7 @@
 
 <body>
   <div class="js_index">
+    <!-- 導覽列 -->
     <nav class="navbar navbar-expand-lg bg-secondary navbar-dark px-5">
       <div class="container">
         <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -57,27 +58,49 @@
           <div class="rounded-end h-100 py-5">
             <div class="container py-5">
               <h5 class="h2 fw-bold text-center mb-4">登入</h5>
-              <form class="js_login_form px-3">
+              <!-- 表單 -->
+              <form class="js_login_form px-3" @submit.prevent="loginFn">
                 <div class="row mb-4">
                   <label for="email_input" class="col-xl-2 col-md-12 col-form-label px-2">帳號</label>
                   <div class="col-xl-10 col-md-12">
-                    <input type="email" class="form-control" id="email_input" placeholder="請輸入帳號" v-model="loginDatas.userData.username" name="email" @change="fromValidateFn">
-                    <p class="email text-danger text-end"></p>
+                    <input type="email" 
+                      name="email" 
+                      placeholder="請輸入帳號" 
+                      id="email_input" 
+                      class="form-control" 
+                      :class="{ 'border-danger' : errorStatus.isEmailError}" 
+                      v-model="loginDatas.userData.username" 
+                      @change="fromValidateFn('email')">
+                    <p class="email text-danger text-end m-0 mt-1"
+                      v-if="errorStatus.isEmailError">
+                      {{ errorStatus.emailErrorMsg }}
+                    </p>
                   </div>
                 </div>
 
                 <div class="row mb-4">
                   <label for="pw_input" class="col-xl-2 col-md-12 col-form-label px-2">密碼</label>
                   <div class="col-xl-10 col-md-12">
-                    <input type="password" class="form-control" id="pw_input" placeholder="請輸入密碼" v-model="loginDatas.userData.password" name="password" @change="loginDatas.fromValidateFn">
-                    <p class="password text-danger text-end"></p>
+                    <input type="password" 
+                      name="password" 
+                      placeholder="請輸入密碼" 
+                      id="pw_input" 
+                      class="form-control" 
+                      :class="{ 'border-danger' : errorStatus.isPwError}" 
+                      v-model="loginDatas.userData.password" 
+                      @change="fromValidateFn('password')">
+                    <p class="password text-danger text-end m-0 mt-1"
+                      v-if="errorStatus.isPwError">
+                      {{ errorStatus.pwErrorMsg }}
+                    </p>
                   </div>
-                  
                 </div>
 
                 <div class="col-12 text-end">
-                  <p class="text-danger text-center">{{ loginDatas.error }}</p>
-                  <button class="btn btn-success" type="button" @click="loginFn" :disabled="loginDatas.isFill">登入</button>
+                  <p class="text-danger text-center">
+                    {{ loginDatas.error }}
+                  </p>
+                  <button class="btn btn-success" type="submit" :disabled="loginDatas.isFill">登入</button>
                 </div>
               </form>
             </div>

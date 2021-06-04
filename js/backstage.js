@@ -5,7 +5,7 @@ const app = {
   data() {
     return {
       url: 'https://vue3-course-api.hexschool.io',
-      path_api: 'toriha_vuetestapi',
+      pathApi: 'toriha_vuetestapi',
       isNew: '',
       productsList: [],
       productsNum: '',
@@ -18,7 +18,6 @@ const app = {
     checkLogin() {              // axios check 確認登入狀態
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, '$1');
       axios.defaults.headers.common.Authorization = token;
-
       axios.post(`${this.url}/api/user/check`)
         .then(res => {
           console.log('帳號認證(成功)', res);
@@ -33,7 +32,7 @@ const app = {
         })
     },
     getData() {                 // axios get 取得資料
-      const url = `${this.url}/api/${this.path_api}/admin/products`;
+      const url = `${this.url}/api/${this.pathApi}/admin/products`;
       axios.get(url)
         .then(res => {
           if(res.data.success){
@@ -77,11 +76,11 @@ const app = {
     updateProduct(){            // axios post/put 資料
       console.log('暫存資料', this.tempProduct);
 
-      let url = `${this.url}/api/${this.path_api}/admin/product`;
+      let url = `${this.url}/api/${this.pathApi}/admin/product`;
       let http = 'post';
 
       if(!this.isNew){
-        url = `${this.url}/api/${this.path_api}/admin/product/${this.tempProduct.id}`;
+        url = `${this.url}/api/${this.pathApi}/admin/product/${this.tempProduct.id}`;
         http = 'put';
       }
 
@@ -103,7 +102,7 @@ const app = {
         })
     },
     deleteData(product) {       // 刪除產品
-      const url = `${this.url}/api/${this.path_api}/admin/product/${product.id}`;
+      const url = `${this.url}/api/${this.pathApi}/admin/product/${product.id}`;
       console.log('id', product.id);
       axios.delete(url)
         .then(res => {
@@ -121,7 +120,7 @@ const app = {
           console.dir('刪除資料(失敗)', err);
         })
     },
-    swalFn(title, icon, timer = 2000, text, button = false) {    // 一般提示視窗
+    swalFn(title, icon, timer = 2000, text, button = false) {             // 一般提示視窗
       const txt = { title, text, icon, button, timer };
       swal(txt);
     },
@@ -134,7 +133,6 @@ const app = {
         dangerMode: true,
       }
       swal(txt)
-
       .then(willDelete => {        // 針對選項執行不同動作
         if (willDelete) {
           this.deleteData(product);

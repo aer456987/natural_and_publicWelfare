@@ -47,4 +47,16 @@ label {
   width: 20px;
   height: 20px;
 }
-/*# sourceMappingURL=backstage_products.css.map */
+
+.page-link:hover, .page-item.active .page-link {
+  font-weight: bold;
+  -webkit-box-shadow: 0 0 0 3px rgba(103, 134, 55, 0.5);
+          box-shadow: 0 0 0 3px rgba(103, 134, 55, 0.5);
+  color: #25342d;
+  background: #EBF3F2;
+}
+
+.page-item a {
+  color: #678637;
+}
+/*# sourceMappingURL=backstage.css.map */

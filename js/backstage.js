@@ -11,7 +11,7 @@ const app = Vue.createApp({
       pagination: {},
       productsNum: '',
       tempProduct: {
-        imagesUrl: [],
+        imagesUrl: [],       // 圖一 ~ 圖五   
       },
     }
   },
@@ -22,6 +22,7 @@ const app = Vue.createApp({
     checkLogin() {              // axios check 確認登入狀態
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, '$1');
       axios.defaults.headers.common.Authorization = token;
+      
       axios.post(`${this.url}/api/user/check`)
         .then(res => {
           console.log('帳號認證(成功)', res);
@@ -30,6 +31,7 @@ const app = Vue.createApp({
             this.swalFn(res.data.message, 'warning', 3000, '即將引導至登入畫面')
             setTimeout(() => {window.location.href='login_page.html';}, 3000)
           }
+
         })
         .catch(err => {
           console.dir('帳號認證(失敗)', err);
@@ -78,6 +80,7 @@ const app = Vue.createApp({
         }
         productModal.show();
       }
+      
     },
     updateProduct(tempProduct){            // axios post/put 資料
       console.log('暫存資料', tempProduct);
@@ -106,6 +109,7 @@ const app = Vue.createApp({
         .catch(err => {
           console.dir('新增/修改資料(失敗)', err);
         })
+
     },
     deleteData(product) {       // 刪除產品
       const url = `${this.url}/api/${this.pathApi}/admin/product/${product.id}`;
@@ -127,6 +131,7 @@ const app = Vue.createApp({
         })
     },
     swalFn(title, icon, timer = 2000, text, button = false) {             // 一般提示視窗
+      // success (成功) ； error (叉叉) ； warning(警告) ； info (說明)
       const txt = { title, text, icon, button, timer };
       swal(txt);
     },
@@ -145,6 +150,7 @@ const app = Vue.createApp({
         } else {
           this.swalFn('已取消操作', 'error', 1500);
         }
+
       });
     },
   },
@@ -156,6 +162,7 @@ const app = Vue.createApp({
     this.getData();
   }
 });
+
 // 將 model 註冊成元件
 app.component('productModal',{
   props: ['tempProduct', 'isNew'],
@@ -251,6 +258,7 @@ app.component('productModal',{
                         <option value="飼料">飼料</option>
                         <option value="籠具">籠具</option>
                         <option value="玩具">玩具</option>
+                        <option value="募款專案">募款專案</option>
                         <option value="其餘用品">其餘用品</option>
                       </select>
                     </div>
@@ -332,4 +340,5 @@ app.component('productModal',{
       </div>
     </div>`,
 })
+
 app.mount('.js_backstage');

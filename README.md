@@ -1,5 +1,8 @@
 網址： https://aer456987.github.io/natural_and_publicWelfare/index.html
 
+110/6/8 優化；
+1. 程式碼語意優化
+
 110/6/7 優化；
 1. 單頁商品資料
 2. 填寫訂單欄位驗證
